@@ -1,9 +1,11 @@
-import { useState, useEffect }from 'react'
+import { useState, useEffect, }from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getCars, deleteCar, getCar } from '../services/api'
+import { getCars, deleteCar, getCar, saveCar } from '../services/api'
 
 export default function Garage() {
     const [cars, setCars] = useState([])
+
+    const [deletedCar, setDeletedCar] = useState(null)
 
     const navigate = useNavigate()
 
@@ -21,8 +23,20 @@ export default function Garage() {
 
     const handleDelete = async (id) => {
         try {
+            const carToDelete = cars.find(car => car.id === id)
             await deleteCar(id)
+            setDeletedCar(carToDelete)
             setCars(cars.filter(car => car.id !== id))
+
+            setTimeout(() => setDeletedCar(null), 5000)
+        } catch (err) {}
+    }
+
+    const handleUndo = async () => {
+        try {
+            await saveCar(deletedCar)
+            setCars([...cars, deletedCar])
+            setDeletedCar(null)
         } catch (err) {}
     }
     
@@ -38,6 +52,7 @@ export default function Garage() {
                 >
                     Add Car
                 </button>
+                
             </div>
 
             {/* Car grid */}
@@ -64,6 +79,17 @@ export default function Garage() {
                 ))}
             </div>
         </div>
+        {deletedCar && (
+            <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-800 border border-gray-700 text-white px-6 py-3 rounded-xl flex items-center gap-4 shadow-lg">
+                <span className="text-sm text-gray-300">Car deleted</span>
+                <button 
+                    onClick={() => handleUndo()}
+                    className="text-sm text-blue-400 hover:text-blue-300 font-semibold transition-colors"
+                >
+                    Undo
+                </button>
+            </div>
+        )}
     </div>
 )
 }
