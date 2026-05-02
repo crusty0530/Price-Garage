@@ -60,7 +60,7 @@ export default function Garage() {
                 {cars.map(car => (
                     <div key={car.id} className="bg-gray-900 border border-gray-800 rounded-xl p-6">
                         <h3 className="text-xl font-semibold mb-4">{car.year} {car.make} {car.model}</h3>
-                        <p className="text-2xl font-bold text-blue-400 mb-4">${car.estimatedPrice?.toLocaleString()}</p>
+                        <p className="text-2xl font-bold text-blue-400 mb-4">${Math.round(car.estimatedPrice).toLocaleString()}</p>
                         <p className="text-gray-400 text-sm">{car.mileage?.toLocaleString()} miles</p>
                         <p className="text-gray-400 text-sm">Condition: {car.condition}</p>
                         <button

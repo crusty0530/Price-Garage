@@ -95,6 +95,12 @@ export default function CarDetail(){
                                 {car.state}
                             </p>
                     </div>
+                    <div>
+                        <label className='text-gray-400 text-sm'>Estimated Price</label>
+                            <p className='bg-gray-800 text-white px-4 py-2 rounded-lg w-full border border-gray-700'>
+                                ${Math.round(car.estimatedPrice).toLocaleString()}
+                            </p>
+                    </div>
                     
                 </div>
             </div>
