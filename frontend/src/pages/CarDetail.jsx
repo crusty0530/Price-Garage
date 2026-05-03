@@ -25,9 +25,14 @@ export default function CarDetail(){
     return(
         <div className='min-h-screen flex items-center justify-center gap-4 flex flex-col'>
             <div className='bg-gray-900 p-8 rounded-xl border border-gray-800 w-full max-w-md'>
-                <button onClick={() => navigate('/garage')} className='mb-6 text-blue-400 hover:text-blue-300'>
-                        ← Back to Garage
-                </button>
+                <div className="flex justify-between">
+                    <button onClick={() => navigate('/garage')} className='mb-6 text-blue-400 hover:text-blue-300'>
+                            ← Back to Garage
+                    </button>
+                    <button onClick={() => navigate(`/garage/${car.id}/edit`)} className='mb-6 text-blue-400 hover:text-blue-300'>
+                            Edit Car → 
+                    </button>
+                </div>
                 <h2 className='text-2xl font-bold mb-6'>Car Details</h2>
                     <div>
                         <label className='text-gray-400 text-sm'>Make</label>

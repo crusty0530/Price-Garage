@@ -9,6 +9,7 @@ import Navbar from './components/Navbar'
 import ResetPassword from './pages/ResetPassword'
 import ForgotPassword from './pages/ForgotPassword'
 import CarDetail from './pages/CarDetail'
+import EditCar from './pages/EditCar'
 
 function App() {
   
@@ -32,6 +33,11 @@ function App() {
             <Route path="/estimate" element={ 
               <ProtectedRoute>
                 <Estimate />
+              </ProtectedRoute>
+            } />
+            <Route path="/garage/:id/edit" element={ 
+              <ProtectedRoute>
+                <EditCar />
               </ProtectedRoute>
             } />
             <Route path="/reset-password" element={<ResetPassword />}/>
