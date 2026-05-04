@@ -1,6 +1,6 @@
 import { useState, useEffect, }from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getCars, deleteCar, getCar, saveCar } from '../services/api'
+import { getCars, deleteCar, getCar, saveCar } from '../../services/api'
 
 export default function Garage() {
     const [cars, setCars] = useState([])

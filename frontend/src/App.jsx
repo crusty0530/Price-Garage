@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import Garage from './pages/Garage'
-import Estimate from './pages/Estimate'
+import Login from './pages/authentication/Login'
+import Register from './pages/authentication/Register'
+import Garage from './pages/car/Garage'
+import Estimate from './pages/car/Estimate'
 import ProtectedRoute from './components/ProtectedRoute'
 import Navbar from './components/Navbar'
-import ResetPassword from './pages/ResetPassword'
-import ForgotPassword from './pages/ForgotPassword'
-import CarDetail from './pages/CarDetail'
-import EditCar from './pages/EditCar'
+import ResetPassword from './pages/authentication/ResetPassword'
+import ForgotPassword from './pages/authentication/ForgotPassword'
+import CarDetail from './pages/car/CarDetail'
+import EditCar from './pages/car/EditCar'
 
 function App() {
   
@@ -18,8 +18,16 @@ function App() {
       <Router>
         <Navbar />
           <Routes>
+
+            {/* authentication routes */}
+
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/reset-password" element={<ResetPassword />}/>
+            <Route path="/forgot-password" element={<ForgotPassword />}/>
+
+            {/* car routes */}
+            
             <Route path="/garage" element={
               <ProtectedRoute>
                 <Garage />
@@ -40,8 +48,7 @@ function App() {
                 <EditCar />
               </ProtectedRoute>
             } />
-            <Route path="/reset-password" element={<ResetPassword />}/>
-            <Route path="forgot-password" element={<ForgotPassword />}/>
+            
             <Route path="/" element={<Navigate to="/garage" />} />
           </Routes>
       </Router>

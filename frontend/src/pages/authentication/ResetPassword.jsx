@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSearchParams } from 'react-router-dom'
-import { resetPassword as resetPasswordApi } from '../services/api'
+import { resetPassword as resetPasswordApi } from '../../services/api'
 
 export default function ResetPassword(){
     const [newPassword, setNewPassword] = useState('')

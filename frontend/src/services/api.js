@@ -10,12 +10,15 @@ API.interceptors.request.use((config) => {
     return config
 })
 
+// authentication routes
 export const register = (data) => API.post('/auth/register', data)
 export const login = (data) => API.post('/auth/login', data)
+export const resetPassword = (data) => API.post('/auth/reset-password', data)
+export const forgotPassword = (data) => API.post('/auth/forgot-password', data)
+
+// car routes
 export const getCars = () => API.get('/cars')
 export const saveCar = (data) => API.post('/cars', data)
 export const deleteCar = (id) => API.delete(`/cars/${id}`)
 export const getCar = (id) => API.get(`/cars/${id}`)
 export const editCar = (id, data) => API.put(`/cars/${id}`, data)
-export const resetPassword = (data) => API.post('/auth/reset-password', data)
-export const forgotPassword = (data) => API.post('/auth/forgot-password', data)

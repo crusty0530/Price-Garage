@@ -1,48 +1,23 @@
-import { editCar as editCarApi } from "../services/api";
-import { getCar as getCarApi } from "../services/api";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect }from 'react'
+import { useNavigate } from 'react-router-dom'
+import { saveCar } from '../../services/api'
 
-export default function EditCar(){
-    const { id } = useParams()
-
-    const [car, setCar] = useState(null)
-    const [error, setError] = useState('')
-
+export default function Estimate() {
     const [formData, setFormData] = useState({
-    make: '', model: '', trim: '', year: '', mileage: '',
-    condition: '', body: '', transmission: '', color: '', interior: '', state: ''
+        make: '',
+        model: '',
+        trim: '',
+        year: '',
+        mileage: '',
+        condition: '',
+        body: '',
+        transmission: '',
+        color: '',
+        interior: '',
+        state: '',
     })
 
-    // Update formData once car loads
-    useEffect(() => {
-        if (car) {
-            setFormData({
-                make: car.make || '',
-                model: car.model || '',
-                trim: car.trim || '',
-                year: car.year || '',
-                mileage: car.mileage || '',
-                condition: car.condition || '',
-                body: car.body || '',
-                transmission: car.transmission || '',
-                color: car.color || '',
-                interior: car.interior || '',
-                state: car.state || '',
-            })
-        }
-    }, [car])
-    
-    useEffect(() => {
-            const fetchCar = async () => {
-                try {
-                    const response = await getCarApi(id)
-                    setCar(response.data)
-                } catch (err) {}
-            }
-            fetchCar()
-        }, [id])
+    const [error, setError] = useState('')
 
     const navigate = useNavigate()
 
@@ -51,18 +26,14 @@ export default function EditCar(){
     }
 
     const handleSubmit = async (e) => {
-            e.preventDefault()
-            console.log('Submitting:', id, formData)
-            try {
-                await editCarApi(id, formData)
-                navigate(`/garage/${car.id}`)
-            } catch (err) {
-                setError('Failed to save car. Please try again.')
-            }
+        e.preventDefault()
+        try {
+            await saveCar(formData)
+            navigate('/garage')
+        } catch (err) {
+            setError('Failed to save car. Please try again.')
         }
-    
-
-    if (!car) return <div className='min-h-screen flex items-center justify-center'>Loading...</div>
+    }
 
     return(
         <div className='min-h-screen flex items-center justify-center'>
