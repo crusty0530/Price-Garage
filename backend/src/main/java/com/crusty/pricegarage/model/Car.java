@@ -2,9 +2,6 @@ package com.crusty.pricegarage.model;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.Collate;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -62,4 +59,7 @@ public class Car {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(name = "isPublic", nullable = false)
+    private boolean isPublic = false;
 }

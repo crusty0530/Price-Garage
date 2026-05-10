@@ -1,6 +1,5 @@
 package com.crusty.pricegarage.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -61,4 +60,11 @@ public class User {
     @Column(name = "reset_token_expiry")
     private LocalDateTime resetTokenExpiry;
 
+    private String bio;
+
+    private String avatarUrl;
+
+    private String displayName;
+
+    private String location;
 }
