@@ -144,21 +144,21 @@ export default function EditCar(){
                             className='bg-gray-800 text-white px-4 py-2 rounded-lg w-full border border-gray-700 focus:outline-none focus:border-blue-500'
                         />
                     </div>
-                    <div>
-                        <label>Visibility</label>
-                        <div className="flex items-center ps-4 bg-gray-800 border border-gray-700 rounded-lg shadow-xs">
+                    <div className="flex flex-col items-center gap-4">
+                        <label className="flex items-center cursor-pointer">Visibility</label>
+                        <label className="flex items-center ps-4 rounded-lg shadow-xs">
+                            <span className="select-none text-sm font-medium text-heading">Hidden</span>
                             <input
                                 type="checkbox"
                                 id="isPublic"
                                 name="isPublic"
                                 checked={formData.isPublic}
                                 onChange={handleChange}
-                                className="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
+                                className="sr-only peer"
                             />
-                            <label htmlFor="isPublic" className="select-none w-full py-3 ms-2 text-sm font-medium text-heading">
-                                Show this car on my public profile
-                            </label>
-                        </div>
+                            <div class="relative mx-3 w-9 h-5 bg-gray-800 dark:peer-focus:ring-brand-soft rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-buffer after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
+                            <span className="select-none text-sm font-medium text-heading">Public</span>
+                        </label>
                     </div>
                     <button type='submit' className='bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors w-full'>Get Estimate</button>
                 </form>
