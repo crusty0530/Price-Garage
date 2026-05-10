@@ -24,9 +24,17 @@ export default function Profile(){
             {/* HEADER */}
             <div className="flex items-start gap-6 mb-6">
                 {/* Avatar placeholder for now */}
-                <div className="w-24 h-24 rounded-full bg-blue-500 flex items-center justify-center text-white text-3xl font-bold felx-shrink-0">
-                    {profile.username[0].toUpperCase()}
-                </div>
+                {profile.avatarUrl ? (
+                    <img 
+                        src={profile.avatarUrl} 
+                        alt={profile.username}
+                        className="w-24 h-24 rounded-full object-cover flex-shrink-0"
+                    />
+                ) : (
+                    <div className="w-24 h-24 rounded-full bg-blue-500 flex items-center justify-center text-white text-3xl font-bold flex-shrink-0">
+                        {profile.username[0].toUpperCase()}
+                    </div>
+                )}
 
                 {/* Name + metadata */}
                 <div className="flex-1">
