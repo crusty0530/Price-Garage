@@ -22,4 +22,5 @@ public class CarRequest {
     private String color;
     private String interior;
     private String state;
+    private Boolean isPublic;
 }

@@ -58,4 +58,12 @@ public class UserService {
         userRepository.save(user);
         return getUser(user.getId());
     }
+
+    @Transactional(readOnly = true)
+    public PublicUserResponse getCurrentUser(String username){
+        User user = userRepository.findByUsername(username)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+
+        return getUser(user.getId());
+    }
 }

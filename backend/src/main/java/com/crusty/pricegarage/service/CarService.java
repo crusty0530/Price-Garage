@@ -3,8 +3,10 @@ package com.crusty.pricegarage.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.crusty.pricegarage.dto.CarRequest;
 import com.crusty.pricegarage.model.Car;
@@ -49,7 +51,7 @@ public class CarService {
         Car foundCar = carRepository.findById(id).orElseThrow(() -> new RuntimeException("Car not found"));
 
         if (!foundCar.getUser().getId().equals(foundUser.getId())) {
-            throw new RuntimeException("Unauthorized");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Unauthorized");
         }
 
         foundCar.setMake(request.getMake());
@@ -64,6 +66,7 @@ public class CarService {
         foundCar.setInterior(request.getInterior());
         foundCar.setState(request.getState());
         foundCar.setEstimatedPrice(predictionService.predictPrice(request));
+        foundCar.setPublic(request.getIsPublic());
         return carRepository.save(foundCar);
     }
 

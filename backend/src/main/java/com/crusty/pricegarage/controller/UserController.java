@@ -1,5 +1,6 @@
 package com.crusty.pricegarage.controller;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -35,6 +36,12 @@ public class UserController {
         
         String username = authentication.getName();
         return ResponseEntity.ok(userService.updateUserProfile(username, request));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<PublicUserResponse> getCurrentUser(Authentication authentication){
+        String username = authentication.getName();
+        return ResponseEntity.ok(userService.getCurrentUser(username));
     }
     
 }

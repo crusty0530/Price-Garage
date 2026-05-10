@@ -1,6 +1,8 @@
+/* eslint-disable no-empty */
+/* eslint-disable no-unused-vars */
 import { useState, useEffect, }from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getCars, deleteCar, getCar, saveCar } from '../../services/api'
+import { getCars, deleteCar, saveCar } from '../../services/api'
 
 export default function Garage() {
     const [cars, setCars] = useState([])
@@ -59,7 +61,10 @@ export default function Garage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {cars.map(car => (
                     <div key={car.id} className="bg-gray-900 border border-gray-800 rounded-xl p-6">
-                        <h3 className="text-xl font-semibold mb-4">{car.year} {car.make} {car.model}</h3>
+                        <div className='flex justify-between items-center'>
+                            <h3 className="text-xl font-semibold mb-4">{car.year} {car.make} {car.model}</h3>
+                            {car.isPublic? <h2 className='text-l text-green-500 font-semibold mb-4'>Public</h2> : <h2 className='text-l text-red-500 font-semibold mb-4'>Hidden</h2>}
+                        </div>
                         <p className="text-2xl font-bold text-blue-400 mb-4">${Math.round(car.estimatedPrice).toLocaleString()}</p>
                         <p className="text-gray-400 text-sm">{car.mileage?.toLocaleString()} miles</p>
                         <p className="text-gray-400 text-sm">Condition: {car.condition}</p>

@@ -1,3 +1,6 @@
+/* eslint-disable no-empty */
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable no-unused-vars */
 import { editCar as editCarApi } from "../../services/api";
 import { getCar as getCarApi } from "../../services/api";
 import { useState, useEffect } from "react";
@@ -12,7 +15,7 @@ export default function EditCar(){
 
     const [formData, setFormData] = useState({
     make: '', model: '', trim: '', year: '', mileage: '',
-    condition: '', body: '', transmission: '', color: '', interior: '', state: ''
+    condition: '', body: '', transmission: '', color: '', interior: '', state: '', isPublic: false
     })
 
     // Update formData once car loads
@@ -30,6 +33,7 @@ export default function EditCar(){
                 color: car.color || '',
                 interior: car.interior || '',
                 state: car.state || '',
+                isPublic: car.isPublic || false
             })
         }
     }, [car])
@@ -47,8 +51,12 @@ export default function EditCar(){
     const navigate = useNavigate()
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
-    }
+        const { name, type, value, checked } = e.target;
+        setFormData({
+            ...formData,
+            [name]: type === 'checkbox' ? checked : value
+        });
+    };
 
     const handleSubmit = async (e) => {
             e.preventDefault()
@@ -135,6 +143,22 @@ export default function EditCar(){
                         <input name='state' value={formData.state} onChange={handleChange} 
                             className='bg-gray-800 text-white px-4 py-2 rounded-lg w-full border border-gray-700 focus:outline-none focus:border-blue-500'
                         />
+                    </div>
+                    <div>
+                        <label>Visibility</label>
+                        <div className="flex items-center ps-4 bg-gray-800 border border-gray-700 rounded-lg shadow-xs">
+                            <input
+                                type="checkbox"
+                                id="isPublic"
+                                name="isPublic"
+                                checked={formData.isPublic}
+                                onChange={handleChange}
+                                className="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
+                            />
+                            <label htmlFor="isPublic" className="select-none w-full py-3 ms-2 text-sm font-medium text-heading">
+                                Show this car on my public profile
+                            </label>
+                        </div>
                     </div>
                     <button type='submit' className='bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors w-full'>Get Estimate</button>
                 </form>

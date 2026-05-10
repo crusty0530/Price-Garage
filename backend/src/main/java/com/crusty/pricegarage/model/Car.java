@@ -3,6 +3,7 @@ package com.crusty.pricegarage.model;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -61,5 +62,6 @@ public class Car {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "isPublic", nullable = false)
+    @JsonProperty("isPublic")
     private boolean isPublic = false;
 }
