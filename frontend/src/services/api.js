@@ -22,3 +22,8 @@ export const saveCar = (data) => API.post('/cars', data)
 export const deleteCar = (id) => API.delete(`/cars/${id}`)
 export const getCar = (id) => API.get(`/cars/${id}`)
 export const editCar = (id, data) => API.put(`/cars/${id}`, data)
+
+//profile routes
+export const getUser = (id) => API.get(`/user/${id}`)
+export const updateUserProfile = (data) => API.patch(`/user/me`, data)
+export const getCurrentUser = () => API.get(`/user/me`)

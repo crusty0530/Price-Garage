@@ -1,3 +1,5 @@
+/* eslint-disable no-empty */
+/* eslint-disable no-unused-vars */
 import { getCar as getCarApi } from "../../services/api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";

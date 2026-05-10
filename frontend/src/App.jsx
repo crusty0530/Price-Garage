@@ -10,6 +10,7 @@ import ResetPassword from './pages/authentication/ResetPassword'
 import ForgotPassword from './pages/authentication/ForgotPassword'
 import CarDetail from './pages/car/CarDetail'
 import EditCar from './pages/car/EditCar'
+import Profile from './pages/profile/Profile'
 
 function App() {
   
@@ -46,6 +47,14 @@ function App() {
             <Route path="/garage/:id/edit" element={ 
               <ProtectedRoute>
                 <EditCar />
+              </ProtectedRoute>
+            } />
+
+            {/* profile routes */}
+
+            <Route path="/profile/:id" element={
+              <ProtectedRoute>
+                <Profile />
               </ProtectedRoute>
             } />
             
