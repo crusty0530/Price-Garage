@@ -11,6 +11,7 @@ import ForgotPassword from './pages/authentication/ForgotPassword'
 import CarDetail from './pages/car/CarDetail'
 import EditCar from './pages/car/EditCar'
 import Profile from './pages/profile/Profile'
+import EditProfile from './pages/profile/EditProfile'
 
 function App() {
   
@@ -57,6 +58,11 @@ function App() {
                 <Profile />
               </ProtectedRoute>
             } />
+            <Route path="/profile/edit" element={
+              <ProtectedRoute>
+                  <EditProfile />
+              </ProtectedRoute>
+            }/>
             
             <Route path="/" element={<Navigate to="/garage" />} />
           </Routes>

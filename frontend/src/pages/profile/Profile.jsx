@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUser as getUserApi } from "../../services/api";
+import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Profile(){
     const { id } = useParams();
     const [profile, setProfile] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const { user: currentUser} = useAuth()
+
+    const isOwnProfile = currentUser && String(currentUser.id) === id
 
     useEffect(() => {
         getUserApi(id)
@@ -45,6 +50,13 @@ export default function Profile(){
                     )}
                     <p className="text-gray-500 text-sm mt-1">Joined {new Date(profile.createdAt).toLocaleDateString()}</p>
                 </div>
+
+                {isOwnProfile && (
+                    <Link to="/profile/edit"
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors cursor-pointer">
+                        Edit
+                    </Link>
+                )}
             </div>
 
             {/* BIO */}

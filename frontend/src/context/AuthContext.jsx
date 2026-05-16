@@ -34,6 +34,10 @@ export function AuthProvider({ children }) {
         // user gets populated by the useEffect above when token changes
     }
 
+    const updateUser = (updatedUser) => {
+        setUser(updatedUser)
+    }
+
     const logout = () => {
         localStorage.removeItem("token")
         setToken(null)
@@ -41,7 +45,7 @@ export function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ token, user, loading, login, logout }}>
+        <AuthContext.Provider value={{ token, user, loading, login, logout, updateUser }}>
             {children}
         </AuthContext.Provider>
     )
