@@ -75,7 +75,7 @@ export default function EditCar(){
     return(
         <div className='min-h-screen flex items-center justify-center'>
             <div className='bg-gray-900 p-8 rounded-xl border border-gray-800 w-full max-w-md'>
-                <h2 className='text-2xl font-bold mb-6'>Estimate Car Price</h2>
+                <h2 className='text-2xl font-bold mb-6'>Edit Car</h2>
                 {error}
                 <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                     <div>
@@ -160,7 +160,7 @@ export default function EditCar(){
                             <span className="select-none text-sm font-medium text-heading">Public</span>
                         </label>
                     </div>
-                    <button type='submit' className='bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors w-full'>Get Estimate</button>
+                    <button type='submit' className='bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors w-full'>Update</button>
                 </form>
                     <p><a href="/garage" className='text-blue-400'>Back to Garage</a></p>
             </div>

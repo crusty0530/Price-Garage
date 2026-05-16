@@ -12,8 +12,11 @@ export default function Navbar() {
     }
 
     return(
-        <nav className="bg-gray-950 text-white flex justify-between items-center px-8 py-4 border-b border-gray-800">
+        <nav className="bg-gray-950 text-white flex justify-between items-center w-full px-8 py-4 border-b border-gray-800">
             <span className="text-blue-500 font-bold text-xl">Price Garage</span>
+
+            <input type="text" placeholder="Search a User"
+            className="absolute left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-black text-center bg-white" />
 
             {user && (
                 <div className="flex items-center gap-6">
