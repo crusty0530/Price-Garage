@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.crusty.pricegarage.dto.PublicCarResponse;
 import com.crusty.pricegarage.dto.PublicUserResponse;
 import com.crusty.pricegarage.dto.UpdateProfileRequest;
+import com.crusty.pricegarage.dto.UserSearchResult;
 import com.crusty.pricegarage.model.User;
 import com.crusty.pricegarage.repository.UserRepository;
 
@@ -65,5 +66,18 @@ public class UserService {
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
         return getUser(user.getId());
+    }
+
+    public List<UserSearchResult> searchUsers(String query){
+        if (query == null || query.trim().isEmpty()){
+            return List.of();
+        }
+
+        List<UserSearchResult> results = userRepository.findTop10ByUsernameStartingWithIgnoreCase(query.trim())
+                                            .stream()
+                                            .map(UserSearchResult::fromEntity).toList();
+
+        return results;
+
     }
 }

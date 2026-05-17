@@ -1,5 +1,7 @@
 package com.crusty.pricegarage.controller;
 
+import java.util.List;
+
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +11,12 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crusty.pricegarage.dto.PublicUserResponse;
 import com.crusty.pricegarage.dto.UpdateProfileRequest;
+import com.crusty.pricegarage.dto.UserSearchResult;
 import com.crusty.pricegarage.service.UserService;
 
 import jakarta.validation.Valid;
@@ -42,6 +46,11 @@ public class UserController {
     public ResponseEntity<PublicUserResponse> getCurrentUser(Authentication authentication){
         String username = authentication.getName();
         return ResponseEntity.ok(userService.getCurrentUser(username));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<UserSearchResult>> searchUsers(@RequestParam(value="q", required=false) String query){
+        return ResponseEntity.ok(userService.searchUsers(query));
     }
     
 }
